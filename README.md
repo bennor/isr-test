@@ -4,7 +4,7 @@ A Next.js application for testing Incremental Static Regeneration (ISR) patterns
 
 ## Overview
 
-This app demonstrates different approaches to implementing ISR in Next.js 15 with the App Router, showcasing various revalidation patterns and static generation strategies.
+This app demonstrates different approaches to implementing ISR in Next.js 16 with the App Router, showcasing various revalidation patterns and static generation strategies.
 
 ## Features
 
