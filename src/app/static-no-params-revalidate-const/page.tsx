@@ -3,8 +3,9 @@ export const revalidate = 60; // Revalidate every 60 seconds
 
 export default async function StaticNoParamsRevalidateConst() {
   // Regular fetch without revalidate option (uses page-level revalidate)
-  const data = await fetch('https://jsonplaceholder.typicode.com/posts/2')
-    .then(res => res.json());
+  const response = await fetch('https://jsonplaceholder.typicode.com/posts/2');
+  const data = await response.json();
+  const fetchDate = response.headers.get('date');
 
   return (
     <div className="p-8">
@@ -18,6 +19,7 @@ export default async function StaticNoParamsRevalidateConst() {
         <h2 className="font-semibold">Fetched Data:</h2>
         <p><strong>Title:</strong> {data.title}</p>
         <p><strong>Body:</strong> {data.body}</p>
+        <p><strong>Fetch Date Header:</strong> {fetchDate}</p>
         <p><strong>Generated at:</strong> {new Date().toISOString()}</p>
       </div>
     </div>
