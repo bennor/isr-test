@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ISR Test Application
+
+A Next.js application for testing Incremental Static Regeneration (ISR) patterns and strategies.
+
+## Overview
+
+This app demonstrates different approaches to implementing ISR in Next.js 15 with the App Router, showcasing various revalidation patterns and static generation strategies.
+
+## Features
+
+The application includes six different test routes organized into three categories:
+
+### 1. Static Pages - No Parameters
+- **Fetch with Revalidate** (`/static-no-params-fetch-revalidate`)
+  - Uses `fetch()` with `{ next: { revalidate: 60 } }`
+  - Fetches data from JSONPlaceholder API
+- **Revalidate Const** (`/static-no-params-revalidate-const`)
+  - Uses `export const revalidate = 60`
+  - Page-level revalidation configuration
+
+### 2. Static Pages - URL Parameters
+- **Fetch with Revalidate** (`/static-param-fetch-revalidate/[id]`)
+  - Dynamic routing with URL parameters
+  - Uses `fetch()` with revalidate option
+- **Revalidate Const** (`/static-param-revalidate-const/[id]`)
+  - Dynamic routing with page-level revalidation
+
+### 3. Static Pages - generateStaticParams
+- **Fetch with Revalidate** (`/static-generateparams-fetch-revalidate/[id]`)
+  - Pre-renders pages for IDs 1-5 at build time
+  - Uses `generateStaticParams()` + fetch revalidation
+- **Revalidate Const** (`/static-generateparams-revalidate-const/[id]`)
+  - Pre-renders pages for IDs 1-5 at build time
+  - Uses `generateStaticParams()` + page-level revalidation
+
+## Technical Details
+
+- **Framework**: Next.js 16.0.4 with App Router
+- **Runtime**: React 19.2.0
+- **Styling**: Tailwind CSS
+- **Language**: TypeScript
+- **Revalidation**: All pages revalidate every 60 seconds
+- **Data Source**: JSONPlaceholder API for testing
+
+## Key Testing Features
+
+- Real-time timestamp display to observe revalidation
+- Fetch date headers from API responses
+- Visual indicators for different revalidation strategies (color-coded links)
+- Both dark and light mode support
 
 ## Getting Started
 
-First, run the development server:
-
+Install dependencies:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Run development server:
+```bash
+pnpm dev
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Build for production:
+```bash
+pnpm build
+pnpm start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Development
 
-## Learn More
+- **Linting**: `pnpm lint` (using Biome)
+- **Formatting**: `pnpm format` (using Biome)
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Open [http://localhost:3000](http://localhost:3000) to view the application and test different ISR patterns.
